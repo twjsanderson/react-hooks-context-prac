@@ -4,17 +4,17 @@ import { BookContext } from '../contexts/BookContext';
 
 const BookList = () => {
     // useContext grabs all value props passed into the ThemeContext Object
-    const { isLightTheme, light, dark } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { books } = useContext(BookContext);
-    const theme = isLightTheme ? light : dark;
-    
+    const styles = theme.isLightTheme ? theme.light : theme.dark;
+
     return (
-        <div className="book-list" style={{ color: theme.syntax, background: theme.bg }}>
+        <div className="book-list" style={{ color: styles.syntax, background: styles.bg }}>
             <ul>
                 {
                     books.map(book => {
                         return (
-                            <li key={ book.id } style={{ background: theme.ui }}>{ book.title }</li>
+                            <li key={ book.id } style={{ background: styles.ui }}>{ book.title }</li>
                         )
                     })
                 }

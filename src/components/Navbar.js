@@ -4,10 +4,11 @@ import { AuthContext } from '../contexts/AuthContext';
 
 const Navbar = () => {
     const { isAuthenticated, toggleAuth } = useContext(AuthContext);
-    const { isLightTheme, light, dark } = useContext(ThemeContext);
-    const theme = isLightTheme ? light : dark;
+    const { theme } = useContext(ThemeContext);
+    let styles = theme.isLightTheme ? theme.light : theme.dark;
+    
     return (
-        <nav style={{ background: theme.ui, color: theme.syntax}}>
+        <nav style={{ background: styles.ui, color: styles.syntax}}>
             <h1>Context App</h1>
             <div onClick={toggleAuth}>
                 { isAuthenticated ? 'Logged In' : 'Logged Out' }
